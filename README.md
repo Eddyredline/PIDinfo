@@ -5,7 +5,7 @@ Detailed info about PID
 
 1. Run the script, specify PID and TIMEOUT:
 
-    ./PIDinfo.sh <PID> <TIMEOUT>
+    ./PIDinfo.sh PID TIMEOUT
 
 ## To do:
   Get PID from process name like this:
