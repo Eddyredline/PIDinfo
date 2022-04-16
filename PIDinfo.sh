@@ -24,16 +24,16 @@ run_strace() {
     echo "Shared MEM:：`ps aux| awk '$2~/^'$PID'$/{print $6}'`"
     echo "--------------------------------"
 
-    timeout $TIMEOUT strace -q -tt -T -f -o $PID-strace.txt -p $PID
-    echo "saved: $PID-strace.txt"
-
+    timeout $TIMEOUT strace -fftttT -p $PID -o $PID-strace.txt
 }
 
 if [[ $# -ne 2 || $1 == '-h' || $1 == '--help' ]]; then
     echo "Usage: ./PIDinfo.sh <PID ID> <Timeout>"
     exit 1
 else
-    run_strace $1 $2    
+    run_strace $1 $2
+    echo "saved: $1-strace.txt"
+    python3 Parser.py $1-strace.txt
 fi
 
 exit
